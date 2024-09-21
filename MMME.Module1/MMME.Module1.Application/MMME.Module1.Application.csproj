@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MMME.Module1.Domain\MMME.Module1.Domain.csproj" />
+        <ProjectReference Include="..\MMME.Module1.Domain\MMME.Module1.Domain.csproj"/>
     </ItemGroup>
 
 </Project>
