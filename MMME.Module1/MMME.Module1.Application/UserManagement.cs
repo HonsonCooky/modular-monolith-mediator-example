@@ -18,8 +18,5 @@ public class UserManagement(IMediator mediator)
         return guids?.Where(whereOperation).ToList();
     }
 
-    public async Task<MmmeUser?> GetUserWithId(Guid guid)
-    {
-        return await mediator.Send(new GetUserRequest(guid));
-    }
+    public async Task<MmmeUser?> GetUserWithId(Guid guid) => await mediator.Send(new GetUserRequest(guid));
 }

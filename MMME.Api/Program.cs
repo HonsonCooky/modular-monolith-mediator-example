@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace MMME.Api;
 
 public class Program
@@ -7,10 +9,12 @@ public class Program
         // The following is your fairly bulk-standard MVC type WEB API builder.
 
         var builder = WebApplication.CreateBuilder(args);
-        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(MMME.Module1.Infrastructure.InMemDbExample).Assembly));
+
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
 
         var app = builder.Build();
         if (app.Environment.IsDevelopment())
