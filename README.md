@@ -99,14 +99,22 @@ public class GetProfile : IRequestHandler<GetProfile, string>
 
 // ...
 
-public async Task<string> GetProfile { /*...*/ }
+public async Task<string> GetProfile() { /*...*/ }
 ```
 
-Now our `GetProfile` method is available as an HTTP endpoint or via the Mediator. In cases such as these, the 
-"Common" code would likely implemented any shared contracts.
+Now our `GetProfile` method is available as an HTTP endpoint or via the Mediator. This is just one example. 
+The same idea could be applied with "NotificationHandler", where such an implementation would enable other
+modules to trigger some "sync" functionality, allowing a function to be called independently OR be triggered
+after an event.
 
 ### Breaking The Rules!
 
-Yup, I know. The example I've provided above breaks the one rule we have tried to achieve. Unfortunately, building 
-with the MediatR in this way, will mean that the project is heavily dependent on this library throughout the entire 
-codebase.
+Now, you might be thinking "Wait a second, we are breaking the rules of CA where we are heavily reliant on 
+the MediatR library in our Application layer". There are most certainly work arounds to ensure that this is 
+not the case. Given the broad reaching nature of the MediatR library, we can install the library into
+our "Common" layer, and create some definitions for "Contract" defining in there. Therefore, our modules would 
+rely on the "Common" layer (which follows our pattern), and then our "Common" layer would provide interfacing with
+the MediatR library, such that changing to another Mediator library would require updating the interfaces inside
+the "Common" code only. My examples above avoided implementing this additional layer of abstraction, to demonstrate
+the core concepts themselves, but utilizing that "Common" project to decouple modules from MediatR is the next step
+to completing the ideas presented in this document.
