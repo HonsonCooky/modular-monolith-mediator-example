@@ -3,9 +3,9 @@ using MMME.Common;
 
 namespace MMME.Module1.Application;
 
-public class ListUserRequest : IRequest<List<Guid>?> {}
+public class ListUserRequest : IContract<List<Guid>?> {}
 
-public class GetUserRequest(Guid userId) : IRequest<MmmeUser?>
+public class GetUserRequest(Guid userId) : IContract<MmmeUser?>
 {
     public Guid UserId { get; } = userId;
 }

@@ -15,7 +15,7 @@ public static class InMemDbExample
     ];
 }
 
-public class ListUsersHandler : IRequestHandler<ListUserRequest, List<Guid>?>
+public class ListUsersHandler : IContractHandler<ListUserRequest, List<Guid>?>
 {
     public Task<List<Guid>?> Handle(ListUserRequest request, CancellationToken cancellationToken)
     {
@@ -24,7 +24,7 @@ public class ListUsersHandler : IRequestHandler<ListUserRequest, List<Guid>?>
     }
 }
 
-public class GetUserHandler : IRequestHandler<GetUserRequest, MmmeUser?>
+public class GetUserHandler : IContractHandler<GetUserRequest, MmmeUser?>
 {
     public Task<MmmeUser?> Handle(GetUserRequest request, CancellationToken cancellationToken)
     {
